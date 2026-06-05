@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement; // 🌟 NEW: Required to pull and load scene assets
 
 public enum DialogueType
 {
@@ -26,8 +27,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image portraitPlayer1;
     [SerializeField] private Image portraitPlayer2;
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI dialogueText; // For character talking
-    [SerializeField] private TextMeshProUGUI narrativeText; // --- ADDED THIS: For story text ---
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI narrativeText;
 
     [Header("References to Freeze")]
     [SerializeField] private PlayerMovement player1;
@@ -37,13 +38,16 @@ public class DialogueManager : MonoBehaviour
     [Header("Cutscene Dialogue Lines")]
     [SerializeField] private List<DialogueLine> lines;
 
+    // 🌟 NEW: Toggle this box in the Unity Inspector ONLY on triggers meant to clear the stage!
+    [Header("Level Transition Settings")]
+    [SerializeField] private bool loadNextLevelOnEnd = false;
+
     private int currentIndex = 0;
     private bool inCutscene = false;
 
     private void Start()
     {
         dialoguePanel.SetActive(false);
-        //Invoke("StartCutscene", 2f); // Temporary test trigger
     }
 
     public void StartCutscene()
@@ -79,7 +83,6 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueLine currentLine = lines[currentIndex];
 
-        // Default state: Assume someone is talking, turn narrative text off
         nameText.gameObject.SetActive(true);
         dialogueText.gameObject.SetActive(true);
         narrativeText.gameObject.SetActive(false);
@@ -105,15 +108,12 @@ public class DialogueManager : MonoBehaviour
                 break;
 
             case DialogueType.Narrative:
-                // Hide normal dialogue elements
                 nameText.gameObject.SetActive(false);
                 dialogueText.gameObject.SetActive(false);
 
-                // Show narrative text and assign the text string to it
                 narrativeText.gameObject.SetActive(true);
                 narrativeText.text = currentLine.text;
 
-                // Dim both character portraits out
                 portraitPlayer1.color = dimColor;
                 portraitPlayer2.color = dimColor;
                 break;
@@ -129,6 +129,22 @@ public class DialogueManager : MonoBehaviour
         {
             switcher.enabled = true;
             switcher.SetDefaultState();
+        }
+
+        // 🌟 NEW: If this cutscene is marked as the stage exit, jump to the next scene index!
+        if (loadNextLevelOnEnd)
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentSceneIndex + 1;
+
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings) 
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+            else
+            {
+                Debug.LogWarning("No more scenes found in Build Settings list!");
+            }
         }
     }
 }

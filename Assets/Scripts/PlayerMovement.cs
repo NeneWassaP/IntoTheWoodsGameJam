@@ -51,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
         // --- UPDATED THIS: Now ONLY returns true if touching the Ground layer ---
         isGrounded = playerCollider.IsTouchingLayers(groundLayer);
         //Debug.Log(gameObject.name + " Is Grounded: " + isGrounded);
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
         if (shouldJump)
         {
-            body.velocity = new Vector2(body.velocity.x, jumpForce);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
             shouldJump = false;
         }
     }

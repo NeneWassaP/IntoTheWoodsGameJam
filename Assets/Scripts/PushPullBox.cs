@@ -80,6 +80,6 @@ public class PushPullBox : MonoBehaviour
         }
 
         // Completely stop the box's momentum when released so it doesn't slide away
-        boxRb.velocity = new Vector2(0, boxRb.velocity.y);
+        boxRb.linearVelocity = new Vector2(0, boxRb.linearVelocity.y);
     }
 }

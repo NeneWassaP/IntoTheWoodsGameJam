@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PushPullBox : MonoBehaviour
@@ -58,19 +58,37 @@ public class PushPullBox : MonoBehaviour
             isGrabbed = true;
             currentGrabber = activePlayer;
 
+            // 🌟 ANIMATION FIX: Tell the active player's animation script to start pushing
+            PlayerAnimation playerAnim = activePlayer.GetComponent<PlayerAnimation>();
+            if (playerAnim != null)
+            {
+                playerAnim.SetPushingState(true);
+            }
+
             // 3. Dynamically apply the physics "superglue" joint
             physicsJoint = gameObject.AddComponent<FixedJoint2D>();
             physicsJoint.connectedBody = activePlayer.GetComponent<Rigidbody2D>();
-            
+
             // CRITICAL GAME JAM PRO-TIP: Disables collisions between the box and the grabber 
             // so they don't violently vibrate or push each other into infinity.
-            physicsJoint.enableCollision = false; 
+            physicsJoint.enableCollision = false;
         }
     }
 
     private void ReleaseBox()
     {
         isGrabbed = false;
+
+        // 🌟 ANIMATION FIX: Tell the player who was holding it to stop playing the push animation
+        if (currentGrabber != null)
+        {
+            PlayerAnimation playerAnim = currentGrabber.GetComponent<PlayerAnimation>();
+            if (playerAnim != null)
+            {
+                playerAnim.SetPushingState(false);
+            }
+        }
+
         currentGrabber = null;
 
         // Break the joint

@@ -1682,10 +1682,12 @@ GameObject:
   - component: {fileID: 365335190}
   - component: {fileID: 365335195}
   - component: {fileID: 365335194}
+  - component: {fileID: 365335197}
   - component: {fileID: 365335193}
   - component: {fileID: 365335189}
   - component: {fileID: 365335192}
   - component: {fileID: 365335191}
+  - component: {fileID: 365335196}
   m_Layer: 3
   m_Name: Player2
   m_TagString: Untagged
@@ -1908,7 +1910,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.45, y: 4.58}
+    oldSize: {x: 2.41, y: 5.11}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1992,7 +1994,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7137336595296999089, guid: d2d6f06ba5e5a7148947a7a00ed26dff, type: 3}
+  m_Sprite: {fileID: -7382728456877576199, guid: 2be51202aed63254b8e8d8e82b09eae6, type: 3}
   m_Color: {r: 0.47484267, g: 0.81685543, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2002,6 +2004,40 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &365335196
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365335188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95b68d1537c0c9b499806d6af95841eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &365335197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365335188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc82c423af3ee54e8ce5c4a2e990cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
 --- !u!1 &385535378
 GameObject:
   m_ObjectHideFlags: 0

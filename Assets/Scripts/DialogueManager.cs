@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 
 public enum DialogueType
 {
-    Player1,
-    Player2,
+    BigBro,
+    LittleBro,
+    Deer,
     Narrative,
     FullNarrative
 }
@@ -28,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private Image portraitPlayer1;
     [SerializeField] private Image portraitPlayer2;
+    [SerializeField] private Image portraitDeer;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI narrativeText;
@@ -166,23 +168,39 @@ public class DialogueManager : MonoBehaviour
 
         if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(true);
         if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(true);
+        if (portraitDeer != null) portraitDeer.gameObject.SetActive(true);
 
         Color dimColor = new Color(0.3f, 0.3f, 0.3f);
 
         switch (currentLine.lineType)
         {
-            case DialogueType.Player1:
+            case DialogueType.BigBro:
                 if (nameText != null) nameText.text = currentLine.name;
                 if (dialogueText != null) dialogueText.text = currentLine.text;
                 if (portraitPlayer1 != null) portraitPlayer1.color = Color.white;
                 if (portraitPlayer2 != null) portraitPlayer2.color = dimColor;
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
                 break;
 
-            case DialogueType.Player2:
+            case DialogueType.LittleBro:
                 if (nameText != null) nameText.text = currentLine.name;
                 if (dialogueText != null) dialogueText.text = currentLine.text;
                 if (portraitPlayer1 != null) portraitPlayer1.color = dimColor;
                 if (portraitPlayer2 != null) portraitPlayer2.color = Color.white;
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                break;
+
+            case DialogueType.Deer:
+                if (nameText != null) nameText.gameObject.SetActive(false);
+                if (dialogueText != null) dialogueText.gameObject.SetActive(false);
+                if (narrativeText != null)
+                {
+                    narrativeText.gameObject.SetActive(true);
+                    narrativeText.text = currentLine.text;
+                }
+                if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(false);
+                if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(false);
+                if (portraitDeer != null) portraitDeer.color = Color.white;
                 break;
 
             case DialogueType.Narrative:
@@ -195,6 +213,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 if (portraitPlayer1 != null) portraitPlayer1.color = dimColor;
                 if (portraitPlayer2 != null) portraitPlayer2.color = dimColor;
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
                 break;
 
             case DialogueType.FullNarrative:
@@ -207,6 +226,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(false);
                 if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(false);
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
                 break;
         }
     }

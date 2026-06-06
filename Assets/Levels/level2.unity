@@ -2033,7 +2033,7 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothSpeed: 5
   offset: {x: 0, y: 1, z: -20}
-  minX: -3.15
+  minX: -4
   maxX: 26.9
   minY: -1
   maxY: 5
@@ -2149,7 +2149,7 @@ Transform:
   m_GameObject: {fileID: 984287581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4, y: 0, z: -10}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3034,6 +3034,9 @@ MonoBehaviour:
   nameText: {fileID: 1611972281}
   dialogueText: {fileID: 782902036}
   narrativeText: {fileID: 1281660446}
+  mainMenuPanel: {fileID: 0}
+  fadeOverlay: {fileID: 0}
+  playAutomaticallyOnStart: 0
   player1: {fileID: 2120044153}
   player2: {fileID: 2103140226}
   switcher: {fileID: 1559753354}
@@ -3292,9 +3295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a40f68dfaa0054dac99ffc4a873a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogueManager: {fileID: 1559753352}
   player1: {fileID: 2120044152}
   player2: {fileID: 2103140225}
+  fadeOverlay: {fileID: 0}
   chatBubbleParent: {fileID: 1512104438}
   bubbleTextMesh: {fileID: 1049560347}
   player2Message: Big bro, you should get closer to the deer. You're the one with
@@ -3581,7 +3584,7 @@ Transform:
   m_GameObject: {fileID: 1828959959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.2777734, y: 6.9287486, z: 0}
+  m_LocalPosition: {x: 6.231, y: 6.9287486, z: 0}
   m_LocalScale: {x: 0.01774046, y: 1.0621414, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1951,7 +1951,7 @@ Transform:
   m_GameObject: {fileID: 869819075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.6805, y: 2.42, z: 0}
+  m_LocalPosition: {x: 12.6805, y: 3.44, z: 0}
   m_LocalScale: {x: 0.6281732, y: 0.10944908, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2263,6 +2263,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 2046355969}
   portraitPlayer1: {fileID: 2000409059}
   portraitPlayer2: {fileID: 1469703862}
+  portraitDeer: {fileID: 0}
   nameText: {fileID: 1020462540}
   dialogueText: {fileID: 1924810530}
   narrativeText: {fileID: 1664534510}
@@ -2634,7 +2635,7 @@ Transform:
   m_GameObject: {fileID: 1317651739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.75, y: 3.97, z: 0}
+  m_LocalPosition: {x: 11.75, y: 5.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

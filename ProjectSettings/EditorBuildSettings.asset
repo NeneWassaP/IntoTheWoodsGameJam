@@ -24,10 +24,16 @@ EditorBuildSettings:
     path: Assets/Levels/level3.unity
     guid: 138a7c8e3061618448951314135f61fd
   - enabled: 1
+    path: Assets/Levels/CutScene3-4.unity
+    guid: 3dbb5afa551292344b065dd57c363233
+  - enabled: 1
     path: Assets/Levels/level4.2.unity
     guid: 7da0c3f6c6f5ce846b68418aaf936089
   - enabled: 1
     path: Assets/Levels/level5.unity
     guid: 404b7d5ada3ed434ebc1e0a98c8c0dc2
+  - enabled: 1
+    path: Assets/Levels/CutScene5-end.unity
+    guid: 32baa51943ce389429874709fb383643
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

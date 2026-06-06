@@ -261,62 +261,126 @@ MonoBehaviour:
   player2: {fileID: 0}
   switcher: {fileID: 0}
   lines:
-  - lineType: 4
+  - lineType: 1
+    name: Little Bro
+    text: "Big bro\u2026"
+  - lineType: 1
+    name: Little Bro
+    text: Do you smell that?
+  - lineType: 0
     name: Big Bro
-    text: "Ouch\u2026"
+    text: Smell what?
+  - lineType: 1
+    name: Little Bro
+    text: 'Something rotten. Like old meat... '
+  - lineType: 0
+    name: Big Bro
+    text: 'I don''t smell anything. '
+  - lineType: 1
+    name: Little Bro
+    text: "It\u2019s getting dark. \r\n"
+  - lineType: 1
+    name: Little Bro
+    text: 'Maybe we should head home.  '
+  - lineType: 0
+    name: Big Bro
+    text: 'Not until I get that deer. '
+  - lineType: 1
+    name: Little Bro
+    text: 'Father always said we should leave before nightfall. '
+  - lineType: 0
+    name: Big Bro
+    text: 'Yeah. Father said a lot of things.  '
+  - lineType: 1
+    name: Little Bro
+    text: "He said there is a monster in these woods. \r\n"
+  - lineType: 0
+    name: Big Bro
+    text: "There isn't. \r\n"
+  - lineType: 1
+    name: Little Bro
+    text: "Then what happened to Mom? \n"
+  - lineType: 0
+    name: Big Bro
+    text: "\u2026 \n"
+  - lineType: 1
+    name: Little Bro
+    text: "She went into the woods with father and never came back. \n"
+  - lineType: 1
+    name: Little Bro
+    text: Father said the monster got her.
+  - lineType: 0
+    name: Big Bro
+    text: Father was a liar.
+  - lineType: 1
+    name: Little Bro
+    text: 'But why would he lie? '
+  - lineType: 0
+    name: Big Bro
+    text: "\u2026 "
+  - lineType: 1
+    name: Little Bro
+    text: 'Then you went into the woods with him and you came back hurt. '
+  - lineType: 1
+    name: Little Bro
+    text: "Father never came home. You said he left us but\u2026"
+  - lineType: 1
+    name: Little Bro
+    text: Did you see the monster too?
+  - lineType: 0
+    name: Big Bro
+    text: 'Stop. '
+  - lineType: 1
+    name: Little Bro
+    text: "But\u2014"
+  - lineType: 0
+    name: Big Bro
+    text: 'I said stop. '
+  - lineType: 1
+    name: Little Bro
+    text: '... '
+  - lineType: 1
+    name: Little Bro
+    text: "\u2026Sorry."
+  - lineType: 1
+    name: Little Bro
+    text: 'I just don''t understand. '
+  - lineType: 1
+    name: Little Bro
+    text: 'First Mom disappeared. Then Father. '
+  - lineType: 1
+    name: Little Bro
+    text: 'Why would they leave us behind? '
+  - lineType: 1
+    name: Little Bro
+    text: '...Big bro? '
+  - lineType: 0
+    name: Big Bro
+    text: ' ... '
   - lineType: 3
     name: 
-    text: "Oww\u2026"
-  - lineType: 2
+    text: 'Stomach growls. '
+  - lineType: 0
     name: Big Bro
-    text: You okay?
+    text: We're hungry.
+  - lineType: 0
+    name: Big Bro
+    text: That's all that matters right now.
+  - lineType: 0
+    name: Big Bro
+    text: That deer is the first decent meal we've seen in weeks.
+  - lineType: 0
+    name: Big Bro
+    text: We're not leaving without it.
   - lineType: 1
     name: Little Bro
-    text: " Yeah\u2026 just a scratch"
+    text: ...
   - lineType: 1
     name: Little Bro
-    text: "Big bro, you\u2019re bleeding?\r\n"
-  - lineType: 0
-    name: Big Bro
-    text: "It\u2019s nothing. "
-  - lineType: 0
-    name: Big Bro
-    text: "Damn it\u2026 the deer got away."
+    text: Okay.
   - lineType: 1
     name: Little Bro
-    text: "Are you sure you\u2019re okay? "
-  - lineType: 1
-    name: Little Bro
-    text: You look really pale.
-  - lineType: 0
-    name: Big Bro
-    text: "Where\u2019s my rifle? "
-  - lineType: 0
-    name: Big Bro
-    text: "\u2026Damn, it must\u2019ve fallen when we went over the edge. \r\n"
-  - lineType: 0
-    name: Big Bro
-    text: " That stupid deer! Next time I see it, it\u2019s dead. \r\n"
-  - lineType: 0
-    name: Big Bro
-    text: 'Come on!
-
-'
-  - lineType: 0
-    name: Big Bro
-    text: 'Come on!
-
-'
-  - lineType: 0
-    name: Big Bro
-    text: 'Come on!
-
-'
-  - lineType: 0
-    name: Big Bro
-    text: 'Come on!
-
-'
+    text: 'Sorry, big bro. '
   loadNextLevelOnEnd: 1
 --- !u!4 &225434160
 Transform:
@@ -462,6 +526,7 @@ GameObject:
   - component: {fileID: 1200718749}
   - component: {fileID: 1200718748}
   - component: {fileID: 1200718747}
+  - component: {fileID: 1200718750}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -543,6 +608,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200718750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200718746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!114 &1342393914 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 256448152016199094, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}

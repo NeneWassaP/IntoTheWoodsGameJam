@@ -252,6 +252,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47044183}
   m_CullTransparentMesh: 1
+--- !u!114 &128413090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4504788316239793707, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}
+  m_PrefabInstance: {fileID: 2004993048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &447183532
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +295,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 799907681}
   portraitPlayer1: {fileID: 2004993053}
   portraitPlayer2: {fileID: 2004993052}
+  portraitDeer: {fileID: 128413090}
   nameText: {fileID: 2004993051}
   dialogueText: {fileID: 2004993050}
   narrativeText: {fileID: 2004993049}

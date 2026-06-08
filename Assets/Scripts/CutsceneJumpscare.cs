@@ -1,94 +1,121 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class CutsceneJumpscare : MonoBehaviour
 {
-    [Header("Timings")]
-    [SerializeField] private float normalDeerDuration = 3.0f; // How long it acts like a normal deer
-    [SerializeField] private float glitchBlinkDuration = 1.2f; // How long it flashes before the scare
-    [SerializeField] private float scareDisplayDuration = 2.0f; // How long the Wendigo screams on screen
+    [Header("Target Objects")]
+    [SerializeField] private GameObject deerObject;
+    [SerializeField] private GameObject gunMarkObject;
+    [SerializeField] private GameObject blackFlashObject;
+    [SerializeField] private GameObject wendigoObject;
 
-    [Header("Jumpscare Assets")]
-    [SerializeField] private Sprite wendigoScareSprite; // The terrifying Wendigo face/pose sprite
-    [SerializeField] private AudioClip scareScreamSFX;  // The heavy audio spike track
+    [Header("Timings")]
+    [SerializeField] private float normalDeerDuration = 3.0f;
+    [SerializeField] private float targetAimDelay = 0.8f;
+    [SerializeField] private float flashDuration = 1.2f;
+    [SerializeField] private float scareDisplayDuration = 2.0f;
+
+    [Header("Background Overlay Settings")]
+    [SerializeField] private SpriteRenderer backgroundRenderer;
+    [SerializeField] private Color scareBackgroundColor = new Color(0.5f, 0f, 0f, 1f);
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip gunshotSFX;
+    [SerializeField] private AudioClip scareScreamSFX;
 
     [Header("References")]
-    [SerializeField] private DialogueManager dialogueManager; // Your level dialogue canvas manager
+    [SerializeField] private DialogueManager dialogueManager;
 
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-    private AudioSource audioSource;
+    // Changed to private so it safely generates on THIS object, preventing cutoff errors
+    private AudioSource localAudioSource;
+    private Color originalBackgroundColor = Color.white;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-
-        // Setup a local audio source dynamically if one doesn't exist
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        if (backgroundRenderer != null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            originalBackgroundColor = backgroundRenderer.color;
         }
+
+        if (deerObject != null) deerObject.SetActive(true);
+        if (gunMarkObject != null) gunMarkObject.SetActive(true);
+        if (blackFlashObject != null) blackFlashObject.SetActive(false);
+        if (wendigoObject != null) wendigoObject.SetActive(false);
+
+        // 🌟 AUTOMATIC AUDIO CHANNEL SETUP
+        // This attaches the audio player directly to the Cutscene Manager object.
+        // Because the Manager stays alive the whole time, the audio can never be cut off!
+        localAudioSource = GetComponent<AudioSource>();
+        if (localAudioSource == null)
+        {
+            localAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Force it to 2D sound so distance/camera placement doesn't make it silent
+        localAudioSource.spatialBlend = 0f;
     }
 
     private void Start()
     {
-        // Kick off the horror sequence immediately when the scene/trigger activates
         StartCoroutine(ExecuteCutscene());
     }
 
     private IEnumerator ExecuteCutscene()
     {
-        // PHASE 1: Normal Behavior
-        // The default animation state in your Animator should be the deer idle/look around loop.
+        // PHASE 1: Deer Idling
         yield return new WaitForSeconds(normalDeerDuration);
 
-        // PHASE 2: The Glitch Blink
-        float timeSpentBlinking = 0f;
-        float blinkSpeed = 0.08f; // Rapid fire flashing rate
+        // PHASE 2: Tense holding delay
+        yield return new WaitForSeconds(targetAimDelay);
 
-        while (timeSpentBlinking < glitchBlinkDuration)
+        // Play Gunshot
+        if (localAudioSource != null && gunshotSFX != null)
         {
-            // Toggle the visibility off and on to create a creepy visual breakdown
-            spriteRenderer.enabled = !spriteRenderer.enabled;
-            yield return new WaitForSeconds(blinkSpeed);
-            timeSpentBlinking += blinkSpeed;
-        }
-        spriteRenderer.enabled = true; // Force it visible when entering the scare phase
-
-        // PHASE 3: The Jump Scare!
-        // Disable the normal deer animator completely so it doesn't try to overwrite our scare sprite
-        if (animator != null) animator.enabled = false;
-
-        // Instantly switch to the Wendigo artwork
-        if (wendigoScareSprite != null)
-        {
-            spriteRenderer.sprite = wendigoScareSprite;
+            localAudioSource.PlayOneShot(gunshotSFX);
         }
 
-        // Make the sprite huge or flash red for maximum visual impact
-        transform.localScale *= 1.3f;
-        spriteRenderer.color = Color.red;
-
-        // Blast the jumpscare scream audio
-        if (scareScreamSFX != null)
+        // PHASE 3: The Black Strobe Flash
+        if (blackFlashObject != null)
         {
-            audioSource.PlayOneShot(scareScreamSFX);
+            float timeSpentFlashing = 0f;
+            float flashSpeed = 0.07f;
+
+            while (timeSpentFlashing < flashDuration)
+            {
+                blackFlashObject.SetActive(!blackFlashObject.activeSelf);
+                yield return new WaitForSeconds(flashSpeed);
+                timeSpentFlashing += flashSpeed;
+            }
+            blackFlashObject.SetActive(false);
         }
 
-        // Camera Shake Hook (Optional)
-        // If you have a camera shake script in your project, trigger it here!
+        // PHASE 4: The Jump Scare Swap!
+        if (deerObject != null) deerObject.SetActive(false); // Safe to disable now!
+        if (gunMarkObject != null) gunMarkObject.SetActive(false);
+
+        if (wendigoObject != null) wendigoObject.SetActive(true);
+
+        if (backgroundRenderer != null)
+        {
+            backgroundRenderer.color = scareBackgroundColor;
+        }
+
+        // 🌟 Play the Scream (Completely safe from being cut off now)
+        if (localAudioSource != null && scareScreamSFX != null)
+        {
+            localAudioSource.PlayOneShot(scareScreamSFX);
+        }
 
         yield return new WaitForSeconds(scareDisplayDuration);
 
-        // PHASE 4: Transition to Dialogue
-        // Clean up the creature (hide it or return it to a passive state)
-        spriteRenderer.color = Color.white;
-        gameObject.SetActive(false); // Remove the creature from the active screen view
+        // PHASE 5: Transition to Dialogue
+        if (wendigoObject != null) wendigoObject.SetActive(false);
 
-        // Launch the dialogue panel!
+        if (backgroundRenderer != null)
+        {
+            backgroundRenderer.color = originalBackgroundColor;
+        }
+
         if (dialogueManager != null)
         {
             dialogueManager.StartCutscene();

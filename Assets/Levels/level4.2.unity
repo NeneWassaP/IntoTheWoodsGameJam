@@ -662,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   player1: {fileID: 955020429}
   player2: {fileID: 365335188}
-  fadeOverlay: {fileID: 0}
+  fadeOverlay: {fileID: 1007398768}
   chatBubbleParent: {fileID: 1613886190}
   bubbleTextMesh: {fileID: 272198990}
   player2Message: Big bro, you should get closer to the deer. You're the one with

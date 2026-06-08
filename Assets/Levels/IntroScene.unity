@@ -603,11 +603,11 @@ MonoBehaviour:
   - sceneName: CutScene3-4
     audioClip: {fileID: 8300000, guid: a5369139481ff9a40accec3d8046f283, type: 3}
   - sceneName: level4.2
-    audioClip: {fileID: 8300000, guid: a5369139481ff9a40accec3d8046f283, type: 3}
+    audioClip: {fileID: 8300000, guid: b12a4d2066a04e049a1bd6dc48985bff, type: 3}
   - sceneName: CutScene4-5
     audioClip: {fileID: 8300000, guid: a5369139481ff9a40accec3d8046f283, type: 3}
   - sceneName: level5
-    audioClip: {fileID: 8300000, guid: a5369139481ff9a40accec3d8046f283, type: 3}
+    audioClip: {fileID: 8300000, guid: fbdc9ebfd04a5dd4497a92a1a5858397, type: 3}
   - sceneName: CutScene5-end
     audioClip: {fileID: 8300000, guid: a5369139481ff9a40accec3d8046f283, type: 3}
   - sceneName: EndCresit

@@ -593,10 +593,10 @@ GameObject:
   m_Component:
   - component: {fileID: 119982819}
   - component: {fileID: 119982818}
-  - component: {fileID: 119982817}
+  - component: {fileID: 119982820}
   - component: {fileID: 119982816}
   m_Layer: 0
-  m_Name: CutSceneObject
+  m_Name: ExitGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,26 +648,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.42, y: 3.23}
   m_EdgeRadius: 0
---- !u!114 &119982817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119982815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a40f68dfaa0054dac99ffc4a873a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  player1: {fileID: 955020429}
-  player2: {fileID: 365335188}
-  fadeOverlay: {fileID: 1007398768}
-  chatBubbleParent: {fileID: 1613886190}
-  bubbleTextMesh: {fileID: 272198990}
-  player2Message: Big bro, you should get closer to the deer. You're the one with
-    the rifle.
-  bubbleDisplayDuration: 3
 --- !u!212 &119982818
 SpriteRenderer:
   serializedVersion: 2
@@ -742,6 +722,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119982820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119982815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58653873b51224499880517ce26bec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExitGate
+  player1: {fileID: 955020429}
+  player2: {fileID: 365335188}
+  nextSceneName: CutScene4-5
+  player1ChatBubble: {fileID: 7437581325443146829}
+  player1Text: {fileID: 7437581325443146828}
+  player1MissingMessage: "I\u2019m not leaving him behind.\r\nWe hide together."
+  player2ChatBubble: {fileID: 1613886190}
+  player2Text: {fileID: 272198990}
+  player2MissingMessage: 'Big bro''s still out there!
+
+    We should hide together.'
+  bubbleDuration: 3
 --- !u!1 &138887881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2198,6 @@ GameObject:
   - component: {fileID: 536214350}
   - component: {fileID: 536214349}
   - component: {fileID: 536214348}
-  - component: {fileID: 536214351}
   - component: {fileID: 536214347}
   - component: {fileID: 536214346}
   m_Layer: 6
@@ -2366,22 +2369,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &536214351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536214345}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05088e62e69ef0c43992762d264cb174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Level4HeavyBox
-  grabDistance: 1.8
-  player1: {fileID: 955020430}
-  player2: {fileID: 365335189}
-  dialogueManager: {fileID: 871148149}
 --- !u!1 &545825284
 GameObject:
   m_ObjectHideFlags: 0
@@ -8713,6 +8700,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62f3e38c43aaec54ba22aefd640b6bbc, type: 3}
+--- !u!114 &7437581325443146828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 782592633029443138, guid: 62f3e38c43aaec54ba22aefd640b6bbc, type: 3}
+  m_PrefabInstance: {fileID: 7437581325443146827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &7437581325443146829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 895494406849817993, guid: 62f3e38c43aaec54ba22aefd640b6bbc, type: 3}
+  m_PrefabInstance: {fileID: 7437581325443146827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public enum DialogueType
 {
     BigBro,
     LittleBro,
+    Both,
     Deer,
     Narrative,
     FullNarrative
@@ -186,6 +187,19 @@ public class DialogueManager : MonoBehaviour
                 if (nameText != null) nameText.text = currentLine.name;
                 if (dialogueText != null) dialogueText.text = currentLine.text;
                 if (portraitPlayer1 != null) portraitPlayer1.color = dimColor;
+                if (portraitPlayer2 != null) portraitPlayer2.color = Color.white;
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                break;
+
+            case DialogueType.Both:
+                if (nameText != null) nameText.gameObject.SetActive(false);
+                if (dialogueText != null) dialogueText.gameObject.SetActive(false);
+                if (narrativeText != null)
+                {
+                    narrativeText.gameObject.SetActive(true);
+                    narrativeText.text = currentLine.text;
+                }
+                if (portraitPlayer1 != null) portraitPlayer1.color = Color.white;
                 if (portraitPlayer2 != null) portraitPlayer2.color = Color.white;
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
                 break;

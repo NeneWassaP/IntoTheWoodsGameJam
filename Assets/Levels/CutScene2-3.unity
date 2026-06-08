@@ -357,7 +357,7 @@ MonoBehaviour:
   - lineType: 0
     name: Big Bro
     text: ' ... '
-  - lineType: 3
+  - lineType: 4
     name: 
     text: 'Stomach growls. '
   - lineType: 0

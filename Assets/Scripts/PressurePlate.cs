@@ -1,11 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private MovingPlatform platform;
 
-    private int objectsOnButton = 0; // Tracks how many things are holding it down
+    private SpriteRenderer spriteRenderer; // 🌟 Cache component for performance
+    private Color originalColor;           // 🌟 Stores your exact starting inspector color
+    private int objectsOnButton = 0; 
+
+    private void Start()
+    {
+        // Remember the exact color configuration set up in the Unity editor
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,8 +31,11 @@ public class PressurePlate : MonoBehaviour
             {
                 platform.SetActivated(true);
 
-                // Visual polish: Dim the button color slightly to show it's pressed
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+                if (spriteRenderer != null)
+                {
+                    // Visual polish: Dynamically dim the original color slightly
+                    spriteRenderer.color = originalColor * 0.5f;
+                }
             }
         }
     }
@@ -37,8 +52,11 @@ public class PressurePlate : MonoBehaviour
                 objectsOnButton = 0; // Reset to 0 just in case of weird physics glitches
                 platform.SetActivated(false);
 
-                // Visual polish: Return button back to full bright color
-                GetComponent<SpriteRenderer>().color = Color.white;
+                if (spriteRenderer != null)
+                {
+                    // 🌟 FIXED: Smoothly reverts exactly back to your customized sprite tint!
+                    spriteRenderer.color = originalColor;
+                }
             }
         }
     }

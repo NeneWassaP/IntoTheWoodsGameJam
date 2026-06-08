@@ -3054,7 +3054,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 0}
   fadeOverlay: {fileID: 0}
   playAutomaticallyOnStart: 0
-  player1: {fileID: 6665322526126421299}
+  player1: {fileID: 0}
   player2: {fileID: 1742801600022420706}
   switcher: {fileID: 1559753354}
   lines:
@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78742b43b14993c42976d571816b8457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitcher
-  player1: {fileID: 6665322526126421299}
+  player1: {fileID: 4686186863516053941}
   player2: {fileID: 1742801600022420706}
   mainCameraScript: {fileID: 984287582}
 --- !u!4 &1559753355
@@ -3404,7 +3404,7 @@ MonoBehaviour:
   player2: {fileID: 513350908603927384}
   fadeOverlay: {fileID: 1684004842}
   chatBubbleParent: {fileID: 3050946547714111174}
-  bubbleTextMesh: {fileID: 7557693107440755513}
+  bubbleTextMesh: {fileID: 2306495016870730305}
   player2Message: Big bro... I don't like this. You should keep the rifle.
   bubbleDisplayDuration: 3
 --- !u!212 &1700120678
@@ -3859,7 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PushPullBox
   grabDistance: 1.8
-  player1: {fileID: 6665322526126421299}
+  player1: {fileID: 0}
   player2: {fileID: 1742801600022420706}
 --- !u!61 &1923697172
 BoxCollider2D:
@@ -4567,6 +4567,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62949a15b3f91c043839dcd6fcdd87ad, type: 3}
+--- !u!114 &2306495016870730305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5866811574499301255, guid: 62949a15b3f91c043839dcd6fcdd87ad, type: 3}
+  m_PrefabInstance: {fileID: 2306495016870730304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &3050946547714111174 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2661914680328072867, guid: 62949a15b3f91c043839dcd6fcdd87ad, type: 3}
@@ -4634,6 +4645,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2115747968004639349, guid: 62f3e38c43aaec54ba22aefd640b6bbc, type: 3}
   m_PrefabInstance: {fileID: 4447555714328829906}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4686186863516053941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3028938081956802770, guid: 62f3e38c43aaec54ba22aefd640b6bbc, type: 3}
+  m_PrefabInstance: {fileID: 4447555714328829906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686186863516053937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfa032c57f500742829529ee36dc3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1001 &5749630494783979223
 PrefabInstance:
   m_ObjectHideFlags: 0

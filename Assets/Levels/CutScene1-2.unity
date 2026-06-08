@@ -444,23 +444,23 @@ MonoBehaviour:
   player2: {fileID: 0}
   switcher: {fileID: 0}
   lines:
-  - lineType: 2
+  - lineType: 3
     name: 
     text: 'The deer lifts its head.
 
 '
-  - lineType: 2
+  - lineType: 3
     name: 
     text: Its eyes lock onto yours.
   - lineType: 2
     name: 
     text: For a moment, neither of you moves.
-  - lineType: 2
+  - lineType: 3
     name: 
     text: 'It stares.
 
 '
-  - lineType: 2
+  - lineType: 3
     name: 
     text: Then it bolts.
   - lineType: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   - lineType: 4
     name: 
     text: The ground disappears beneath them.
-  - lineType: 3
+  - lineType: 2
     name: Big Bro & Little Bro
     text: AHHHHHHHH!
   - lineType: 4

@@ -707,7 +707,7 @@ MonoBehaviour:
   minX: -3.9
   maxX: 7.6
   minY: -1
-  maxY: 5
+  maxY: 4.5
 --- !u!1 &587877341
 GameObject:
   m_ObjectHideFlags: 0

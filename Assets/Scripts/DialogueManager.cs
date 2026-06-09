@@ -13,7 +13,8 @@ public enum DialogueType
     Both,
     Deer,
     Narrative,
-    FullNarrative
+    FullNarrative,
+    Fall
 }
 
 [System.Serializable]
@@ -31,15 +32,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image portraitPlayer1;
     [SerializeField] private Image portraitPlayer2;
     [SerializeField] private Image portraitDeer;
+    [SerializeField] private Image fall;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI narrativeText;
 
-    // 🌟 OPTIONAL: Leaving these empty switches the script to "In-Game Mode" automatically
     [Header("Intro Menu Setup (Optional - Leave Empty for In-Game)")]
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private CanvasGroup fadeOverlay;
-    [SerializeField] private bool playAutomaticallyOnStart = false; // Great for In-Game cutscenes
+    [SerializeField] private bool playAutomaticallyOnStart = false;
 
     [Header("References to Freeze (Optional)")]
     [SerializeField] private PlayerMovement player1;
@@ -56,20 +57,20 @@ public class DialogueManager : MonoBehaviour
     private bool inCutscene = false;
     private bool isTransitioning = false;
 
+    // 🌟 NEW: Track which specific player triggered this instance
+    private GameObject playerLastPlayed = null;
+
     private void Start()
     {
         dialoguePanel.SetActive(false);
 
-        // 🌟 SMART MODE CHECK: Detect if we are in the Intro Scene or an In-Game Scene
         if (mainMenuPanel != null)
         {
-            // Intro Mode: Show menu, hide fade screen
             mainMenuPanel.SetActive(true);
             if (fadeOverlay != null) fadeOverlay.alpha = 0f;
         }
         else
         {
-            // In-Game Mode: If marked to play instantly on level load, fire it up!
             if (playAutomaticallyOnStart)
             {
                 StartCutscene();
@@ -77,7 +78,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Call this from your Start Button (Intro Scene Only)
     public void OnStartButtonClick()
     {
         if (isTransitioning) return;
@@ -88,7 +88,6 @@ public class DialogueManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        // 1. Fade to Black (Only runs if a fade overlay object is assigned)
         if (fadeOverlay != null)
         {
             float duration = 1.0f;
@@ -101,16 +100,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // 2. Hide the main menu panel
         if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
 
-        // 3. Keep the screen black for 2 seconds
         yield return new WaitForSeconds(2.0f);
 
-        // 4. Start the dialogue text
         StartCutscene();
 
-        // 5. Fade the black overlay back out
         if (fadeOverlay != null)
         {
             float duration = 1.0f;
@@ -126,15 +121,17 @@ public class DialogueManager : MonoBehaviour
         isTransitioning = false;
     }
 
-    // 🌟 IN-GAME TRIGGERING: You can still call this from external trigger zones or interaction buttons!
-    public void StartCutscene()
+    // 🌟 UPDATED: Added an optional parameter. This accepts 0 arguments OR 1 argument perfectly!
+    public void StartCutscene(GameObject triggeringPlayer = null)
     {
         if (lines.Count == 0) return;
 
         inCutscene = true;
         currentIndex = 0;
 
-        // Freeze controls safely (won't error if players aren't in the scene)
+        // Save who opened this dialogue box
+        playerLastPlayed = triggeringPlayer;
+
         if (player1 != null) player1.canControl = false;
         if (player2 != null) player2.canControl = false;
         if (switcher != null) switcher.enabled = false;
@@ -181,6 +178,7 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.color = Color.white;
                 if (portraitPlayer2 != null) portraitPlayer2.color = dimColor;
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(false);
                 break;
 
             case DialogueType.LittleBro:
@@ -189,6 +187,7 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.color = dimColor;
                 if (portraitPlayer2 != null) portraitPlayer2.color = Color.white;
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(false);
                 break;
 
             case DialogueType.Both:
@@ -202,6 +201,7 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.color = Color.white;
                 if (portraitPlayer2 != null) portraitPlayer2.color = Color.white;
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(false);
                 break;
 
             case DialogueType.Deer:
@@ -215,6 +215,8 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(false);
                 if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(false);
                 if (portraitDeer != null) portraitDeer.color = Color.white;
+                if (fall != null) fall.gameObject.SetActive(false);
+
                 break;
 
             case DialogueType.Narrative:
@@ -228,6 +230,8 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.color = dimColor;
                 if (portraitPlayer2 != null) portraitPlayer2.color = dimColor;
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(false);
+
                 break;
 
             case DialogueType.FullNarrative:
@@ -241,6 +245,21 @@ public class DialogueManager : MonoBehaviour
                 if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(false);
                 if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(false);
                 if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(false);
+                break;
+
+            case DialogueType.Fall:
+                if (nameText != null) nameText.gameObject.SetActive(false);
+                if (dialogueText != null) dialogueText.gameObject.SetActive(false);
+                if (narrativeText != null)
+                {
+                    narrativeText.gameObject.SetActive(true);
+                    narrativeText.text = currentLine.text;
+                }
+                if (portraitPlayer1 != null) portraitPlayer1.gameObject.SetActive(false);
+                if (portraitPlayer2 != null) portraitPlayer2.gameObject.SetActive(false);
+                if (portraitDeer != null) portraitDeer.gameObject.SetActive(false);
+                if (fall != null) fall.gameObject.SetActive(true);
                 break;
         }
     }
@@ -250,31 +269,54 @@ public class DialogueManager : MonoBehaviour
         inCutscene = false;
         dialoguePanel.SetActive(false);
 
+        // 🌟 UPDATED: Smart control restoration logic
         if (switcher != null)
         {
             switcher.enabled = true;
-            switcher.SetDefaultState();
+
+            if (playerLastPlayed != null)
+            {
+                // Only hand control back to the specific sibling that stepped into the zone
+                if (player1 != null) player1.canControl = (playerLastPlayed == player1.gameObject);
+                if (player2 != null) player2.canControl = (playerLastPlayed == player2.gameObject);
+
+                // 💡 NOTE: If your PlayerSwitcher component has its own function to force focus onto 
+                // a specific player object, you should call it right here!
+                // Example: switcher.SetActiveCharacter(playerLastPlayed);
+            }
+            else
+            {
+                // Fallback for intro scenes or auto-plays where no direct object touched a trigger
+                switcher.SetDefaultState();
+            }
         }
         else
         {
-            // If there's no switcher, manually restore control to players in-game
-            if (player1 != null) player1.canControl = true;
+            if (playerLastPlayed != null)
+            {
+                PlayerMovement pm = playerLastPlayed.GetComponent<PlayerMovement>();
+                if (pm != null) pm.canControl = true;
+            }
+            else if (player1 != null)
+            {
+                player1.canControl = true;
+            }
         }
 
-        // 🌟 UPDATED: Instead of instantly changing scenes, start the smooth fade transition!
+        // Reset our tracker slot for the next interaction zone
+        playerLastPlayed = null;
+
         if (loadNextLevelOnEnd)
         {
             StartCoroutine(FadeAndLoadNextLevelRoutine());
         }
     }
 
-    // 🌟 NEW: Coroutine that handles the smooth fade out before executing the scene change
     private IEnumerator FadeAndLoadNextLevelRoutine()
     {
-        // 1. If a fade overlay is assigned, smoothly dim the screen to pure black
         if (fadeOverlay != null)
         {
-            float duration = 1.0f; // Time in seconds for the fade out
+            float duration = 1.0f;
             float elapsed = 0f;
 
             while (elapsed < duration)
@@ -285,7 +327,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // 2. Once the screen is completely black, safely load the next level asset
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 

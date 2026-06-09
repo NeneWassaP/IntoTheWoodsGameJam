@@ -313,6 +313,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &633440843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1757995479200575046, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}
+  m_PrefabInstance: {fileID: 1963770907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &694455012
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +445,7 @@ MonoBehaviour:
   portraitPlayer1: {fileID: 1963770913}
   portraitPlayer2: {fileID: 1963770912}
   portraitDeer: {fileID: 1392438139}
+  fall: {fileID: 633440843}
   nameText: {fileID: 1963770911}
   dialogueText: {fileID: 1963770910}
   narrativeText: {fileID: 1963770909}
@@ -475,10 +487,10 @@ MonoBehaviour:
   - lineType: 4
     name: 
     text: The deer stays just out of reach.
-  - lineType: 4
+  - lineType: 6
     name: 
     text: "Then\u2014"
-  - lineType: 4
+  - lineType: 6
     name: 
     text: The ground disappears beneath them.
   - lineType: 2
@@ -703,10 +715,6 @@ PrefabInstance:
     - target: {fileID: 4851188407553445199, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}
       propertyPath: m_Name
       value: DialoguePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851188407553445199, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8338365695860795212, guid: f6e6121fda19a494586278a2a963a7f3, type: 3}
       propertyPath: m_Pivot.x
